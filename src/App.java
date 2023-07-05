@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-Class Livro {
+class Livro {
     private String titulo;
     private String autor;
     private boolean disponivel;
 
-        public Livro(String titulo, String autor) {
+public Livro(String titulo, String autor) {
             this.titulo = titulo;
             this.autor = autor;
             this.disponivel = true;
@@ -38,13 +38,13 @@ class Membro {
     public String getNome() {
         return nome;
     }
-    public  list<Livro> getLivrosEmprestados() {
-        return livrosEmprestado;
+    public  List<Livro> getLivrosEmprestados() {
+        return getLivrosEmprestados;
     }
 
     public void emprestarLivro(Livro livro) {
         if (livro.isDisponivel()) {
-            livrosEmprestado.add(livro);
+            livrosEmprestados.add(livro);
             livro.setDisponivel(false);
             System.out.println("Livro emprestado com sucesso!");
         } else {
@@ -53,7 +53,7 @@ class Membro {
 }
 
 public void devolverLivro (Livro livro) {
-    if(livrosEmprestado.remove(livro)) {
+    if(livrosEmprestados.remove(livro)) {
         livro.setDisponivel(true);
         System.out.println("Livro devolvido com sucesso!");
     } else {
@@ -64,14 +64,14 @@ public void devolverLivro (Livro livro) {
 
 public class App {
     private List<Livro> livros;
-    private List<Membro> membro;
+    private List<Membro> membros;
 
     public App() {
         this.livros = new ArrayList<>();
         this.membros = new ArrayList<>();
     }
     public void adicionarLivro(Livro livro) {
-        livros.add(livros);
+        livros.add(livro);
     }
 
     public void adicionarMembro(Membro membro) {
@@ -82,7 +82,15 @@ public class App {
         System.out.println("Livros disponiveis:");
             for (Livro livro : livros) {
                 if (livro.isDisponivel()) {
-                    System.out.println(livro.getTitulo() + - " + livro.getAutor());
+                    System.out.println(livro.getTitulo() + " - " + livro.getAutor());
+            }
+        }
+    }
+    public void mostrarLivrosEmprestados() {
+        System.out.println("Livros emprestados:");
+        for (Livro livro : livros) {
+            if (livro.isDisponivel()) {
+                System.out.println("livro.getTitulo"() + " - " + livro.getAutor());
             }
         }
     }
@@ -104,15 +112,78 @@ public class App {
         biblioteca.adicionarMembro(membro2);
 
         Scanner scanner = new Scanner(System.in);
-    While (true) {
-        System.out.println("\n=== Menu ===""); //alterar depois
-        System.out.println("1. Mostrar livros disponiveis");
-        System.out.println("2. Mostrar livros emprestados");
-        System.out.println("3. Emprestar livro");
-        System.out.println("4. Delvover livros");
-        System.out.println("5. Sair");
-        System.out.println("Escolha uma opçao: ");
-        int opcao = scanner.nextInt();
+
+    while (true) {
+            System.out.println("\n=== MENU ===");
+                System.out.println("1. Mostrar livros disponíveis");
+                    System.out.println("2. Mostrar livros emprestados");
+                        System.out.println("3. Emprestar livro");
+                            System.out.println("4. Devolver livro");
+                    System.out.println("5. Sair");
+                System.out.print("Escolha uma opção: ");
+            int opcao = scanner.nextInt();
+
+        if (opcao == 1) {
+            biblioteca.mostrarLivrosDisponiveis();
+        } else if (opcao == 2) {
+            biblioteca.mostrarLivrosDisponiveis();
+        } else if (opcao == 3) {
+            System.out.print("Digite o titulo  do livro: ");
+            scanner.nextLine();
+            String titulo = scanner.nextLine();
+
+            Livro livro = null;
+            for (Livro 1 : biblioteca.livros) {
+                if (1.getTitulo().equals(titulo) && 1.is.Disponivel()) {
+                    Livro = 1;
+                    break;
+                }
+            }
+
+            if(livro != null) {
+                System.out.print("Digite o nome do membro: ");
+                String nomeMembro = scanner.nextLine();
+
+                Membro membro = null;
+                for (Membro m : biblioteca.membros) {
+                    if (m.getNome().equals(nomeMembro)) {
+                        membro = m;
+                        break;
+                    }
+                }
+                if (membro != null) {
+                    membro.emprestarLivro(livro);
+                } else {
+                    System.out.println("Membro nao encontrado.");
+                }
+            } else {
+                System.out.println("Livro nao encontrado ou nao disponivel.");
+            }
+
+        } else if (opcao == 4) {
+            System.out.println("Digital o titulo do livro: ");
+            String titulo = scanner.nextLine();
+
+            Livro livro = null;
+            for (Livro 1 : biblioteca.livros) {
+                if (1.getTitulo().equals(titulo) && !l.isDisponivel()) {
+                    livro = 1;
+                    break;
+                }
+            }
+            if(membro != null) {
+                membro.devolverLivro(livro);
+            } else {
+                System.out.println("Membro nao encontrado.");
+            }
+        } else {
+            System.out.println("Livro nao encontrado ou nao emprestado.");
+        }
+    } else if (opcao == 5) {
+        break;
+        } else {
+            System.out.println("Opcao invalida.");
         }
     }
+scanner.close();
 }
